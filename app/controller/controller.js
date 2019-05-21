@@ -2,6 +2,7 @@ const db = require('../config/db.config.js');
 const config = require('../config/config.js');
 const User = db.user;
 const Role = db.role;
+const Observationslip = db.observationslip;
 
 const Op = db.Sequelize.Op;
 
@@ -147,8 +148,10 @@ exports.managementBoard = (req, res) => {
 
 //observationslip
 exports.storeObservationslip = (req, res) => {
-	// Save User to Database
-	User.create({
+	console.log(req.body)
+	console.log('here')
+	// Save form data  to Database
+	Observationslip.create({
 		name: req.body.name,
 		username: req.body.username,
 		email: req.body.email,
