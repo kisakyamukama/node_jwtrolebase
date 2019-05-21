@@ -8,6 +8,7 @@ module.exports = function (app) {
 	app.use(function (req, res, next) {
 		res.header("Access-Control-Allow-Origin", "*");
 		res.header("Access-Control-Allow-Headers", "x-access-token, Origin, Content-Type, Accept");
+		res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 		next();
 	});
 
@@ -24,5 +25,8 @@ module.exports = function (app) {
 	//observationslip
 	app.post('/api/auth/storeObservationslip', controller.storeObservationslip);
 
-	app.get('api/getObservationslips', controller.getObservationslips);
+	// app.get('api/getObservationslips', controller.getObservationslips);
+
+	//test
+	app.get('/api/test/getObservationslips', [authJwt.verifyToken], controller.getObservationslips);
 }

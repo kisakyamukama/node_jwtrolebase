@@ -271,3 +271,23 @@ exports.storeObservationslip = (req, res) => {
 		res.status(500).send({ reason: err.message });
 	})
 }
+
+// get obsevrationslips
+exports.getObservationslips = (req, res) => {
+	console.log('here')
+	Observationslip.findAll({
+		where: {
+			station:'1'	
+
+		},limit: 10
+	
+	}).then(observationslip => {
+		console.log(observationslip);
+		res.json(observationslip)
+	}).catch(err => {
+		res.status(500).send({
+			'description': 'Can not fetch obsevrationslips',
+			'error': err
+		});
+	})
+}
