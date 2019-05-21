@@ -144,3 +144,33 @@ exports.managementBoard = (req, res) => {
 		});
 	})
 }
+
+//observationslip
+exports.storeObservationslip = (req, res) => {
+	// Save User to Database
+	User.create({
+		name: req.body.name,
+		username: req.body.username,
+		email: req.body.email,
+		password: bcrypt.hashSync(req.body.password, 8),
+		role:req.body.roles
+
+	}).then(user => {
+		Role.findAll({
+			where: {
+				name: {
+					[Op.or]: req.body.roles
+				}
+			}
+		}).then(roles => {
+			console
+			user.setRoles(roles).then(() => {
+				res.send({ message: 'Registered successfully!' });
+			});
+		}).catch(err => {
+			res.status(500).send({ reason: err.message });
+		});
+	}).catch(err => {
+		res.status(500).send({ reason: err.message });
+	})
+}
