@@ -24,9 +24,6 @@ module.exports = function (app) {
 
 	//observationslip
 	app.post('/api/auth/storeObservationslip', controller.storeObservationslip);
-
-	// app.get('api/getObservationslips', controller.getObservationslips);
-
 	//test
 	app.get('/api/test/getObservationslips', [authJwt.verifyToken], controller.getObservationslips);
 }

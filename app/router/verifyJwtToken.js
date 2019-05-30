@@ -3,7 +3,7 @@ const config = require('../config/config.js');
 const db = require('../config/db.config.js');
 const User = db.user;
 
-verifyToken = (req, res, next) => {
+verifyToken = (req, res, next) => {ser
 	let token = req.headers['x-access-token'];
 
 	if (!token){

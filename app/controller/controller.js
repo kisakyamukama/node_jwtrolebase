@@ -148,8 +148,6 @@ exports.managementBoard = (req, res) => {
 
 //observationslip
 exports.storeObservationslip = (req, res) => {
-	console.log(req.body)
-	console.log('here')
 	// Save form data  to Database
 	Observationslip.create({
 		Time: req.body.Time,
@@ -261,9 +259,6 @@ exports.storeObservationslip = (req, res) => {
 			observationslips => {
 			console
 			res.send({ message: 'Registered successfully!' });
-			// user.setRoles(roles).then(() => {
-			// 	res.send({ message: 'Registered successfully!' });
-			// });
 		}).catch(err => {
 			res.status(500).send({ reason: err.message });
 		});
@@ -274,15 +269,9 @@ exports.storeObservationslip = (req, res) => {
 
 // get obsevrationslips
 exports.getObservationslips = (req, res) => {
-	console.log('here')
 	Observationslip.findAll({
-		where: {
-			station:'1'	
-
-		},limit: 10
-	
+		limit: 10	
 	}).then(observationslip => {
-		console.log(observationslip);
 		res.json(observationslip)
 	}).catch(err => {
 		res.status(500).send({
