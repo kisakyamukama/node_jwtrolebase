@@ -26,4 +26,11 @@ module.exports = function (app) {
 	app.post('/api/auth/storeObservationslip', controller.storeObservationslip);
 	//test
 	app.get('/api/test/getObservationslips', [authJwt.verifyToken], controller.getObservationslips);
+
+	//users
+	app.get('/api/users', controller.getAllUsers);
+	// get user
+	app.get('/api/users/:id', controller.getUser);
+	// update user
+	app.put('/api/users/update', controller.updateUser);
 }

@@ -22,7 +22,7 @@ exports.signup = (req, res) => {
 		Role.findAll({
 			where: {
 				name: {
-					[Op.or]: req.body.roles
+					[Op.or]: req.body.roles //op tries to match
 				}
 			}
 		}).then(roles => {
@@ -97,6 +97,44 @@ exports.userContent = (req, res) => {
 		});
 	})
 }
+
+// get a  user
+exports.getUser = (req, res) => {
+	const Id = req.params.id;
+	console.log(Id);
+	User.findOne({
+		attributes: ['id','name', 'username', 'email', 'createdAt', 'updatedAt'],
+		where: {
+			id: Id
+		}
+	}).then( user => {
+		// console.log(user);
+		res.json(user)
+	}).catch(err => {
+		res.status(500).send({
+			'description': 'Can not fetch user',
+			'error': err
+		});
+	})
+}
+
+exports.updateUser = (req, res) => {
+	let userInfo = req.body;
+	console.log(req.body);
+	let id = req.body.id;
+
+	User.update(userInfo,
+				{ where: { id: id }}
+			).then(() => {
+				res.status(200).json({msg: 'Updated successfully a user  with id = ' + id});
+			});
+};
+
+exports.getAllUsers = (req, res) => {
+	User.findAll().then(users => {
+		res.json(users);
+	});
+};
 
 exports.adminBoard = (req, res) => {
 	User.findOne({
@@ -270,7 +308,7 @@ exports.storeObservationslip = (req, res) => {
 // get obsevrationslips
 exports.getObservationslips = (req, res) => {
 	Observationslip.findAll({
-		limit: 10	
+		limit: 10
 	}).then(observationslip => {
 		res.json(observationslip)
 	}).catch(err => {
