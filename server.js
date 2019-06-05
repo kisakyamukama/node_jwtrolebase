@@ -1,6 +1,8 @@
 var express = require('express');
+var cors =  require('cors')
 var app = express();
 var bodyParser = require('body-parser');
+app.use(cors())
 app.use(bodyParser.json())
 
 require('./app/router/router.js')(app);
