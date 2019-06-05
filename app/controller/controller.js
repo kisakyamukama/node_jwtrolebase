@@ -118,6 +118,16 @@ exports.getUser = (req, res) => {
 	})
 }
 
+exports.deleteUser = (req, res) => {
+	const id =  req.params.id;
+	console.log(id);
+	User.destroy({
+		where: {id: id}
+	}).then(() => {
+		res.status(200).json({ msg: 'Deleted successfully a user with id = ' + id });
+	});
+}
+
 exports.updateUser = (req, res) => {
 	let userInfo = req.body;
 	console.log(req.body);

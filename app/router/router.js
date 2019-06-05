@@ -34,4 +34,6 @@ module.exports = function (app) {
 	app.get('/api/users/:id', controller.getUser);
 	// update user
 	app.put('/api/users/update', controller.updateUser);
+	// delete user -> will later change to deactivate
+	app.delete('/api/users/delete/:id', controller.deleteUser);
 }
