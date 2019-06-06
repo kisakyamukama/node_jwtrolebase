@@ -23,13 +23,20 @@ module.exports = function (app) {
 	app.get('/api/test/admin', [authJwt.verifyToken, authJwt.isAdmin], controller.adminBoard);
 
 	//observationslip
-	app.post('/api/auth/storeObservationslip', controller.storeObservationslip);
+	// app.post('/api/auth/storeObservationslip', controller.storeObservationslip);
 	//test
-	app.get('/api/test/getObservationslips', [authJwt.verifyToken], controller.getObservationslips);
+	// app.get('/api/test/getObservationslips', [authJwt.verifyToken], controller.getObservationslips);
 
-	// update observationslip
+	// observationslip
 	app.post('/api/observationslip/create', controller.storeObservationslip)
-
+    // select all
+	app.get('/api/observationslip/getAll', controller.getObservationslips);
+	// select one
+	app.get('/api/observationslip/:id', controller.getAnObservationslip);
+	// update slip
+	app.put('/api/observationslip/updateObservationslip', controller.updateObservationslip);
+	// count unsynced records
+	app.get('/api/observationslip/count', controller.countUnsyncedObservationslips);
 	//users
 	app.get('/api/users', controller.getAllUsers);
 	// get user

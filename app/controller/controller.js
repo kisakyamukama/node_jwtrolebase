@@ -140,6 +140,7 @@ exports.updateUser = (req, res) => {
 			});
 };
 
+
 exports.getAllUsers = (req, res) => {
 	User.findAll().then(users => {
 		res.json(users);
@@ -327,7 +328,7 @@ exports.storeObservationslip = (req, res) => {
 // get obsevrationslips
 exports.getObservationslips = (req, res) => {
 	Observationslip.findAll({
-		limit: 10
+		// limit: 10
 	}).then(observationslip => {
 		res.json(observationslip)
 	}).catch(err => {
@@ -337,3 +338,61 @@ exports.getObservationslips = (req, res) => {
 		});
 	})
 }
+exports.getAnObservationslip = (req, res) => {
+	const slipId =  req.params.id;
+	// console.log(slipId);
+	Observationslip.findOne({
+		where: { id: slipId}
+	}).then( oSlip => {
+		// console.log(oSlip);
+		res.json(oSlip)
+	}).catch(err => {
+		res.status(500).send({
+			'description': 'Can not fetch observationslip form',
+			'error': err
+		});
+	})
+}
+
+// count unsynced 
+exports.countUnsyncedObservationslips =  (req, res) => {
+	Observationslip.findAndCountAll({
+		where: {SyncStatus: 'true'}
+	}).then(count => {
+		console.log(count);
+		res.json(count);
+	}).catch(err => {
+		res.status(500).send({
+			'description':'Failed to count unsyced records',
+			'error': err
+		});
+	});
+
+}
+
+exports.updateObservationslip = (req, res) => {
+	let slipData =  req.body;
+	console.log(req.body);
+	let slipId = req.body.id;
+	console.log(slipId);
+
+	// Observationslip.find({ where : { id: slipId}})
+	// .on('success', function(observationslip) {
+	// 	if(observationslip) {
+	// 		console.log('yes exists');
+	// 	}
+	// })
+
+	Observationslip.update(
+		{slipData},
+		{ where: { id: slipId}}
+		).then(() => {
+			res.status(200).json({ msg: 'Updated successfully observationslip  with id = ' + id});
+		}).catch(err => {
+			res.status(500).send({
+				'description': 'Failed to update observationslip form',
+				'error': err
+			});
+		});
+}
+
