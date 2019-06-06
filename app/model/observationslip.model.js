@@ -3,7 +3,7 @@ module.exports = (sequelize, Sequelize) => {
   Time: {  type: Sequelize.STRING },
   Date: {  type: Sequelize.STRING },
   Station: {  type: Sequelize.INTEGER },
-  stationName: {  type: Sequelize.STRING },
+  // stationName: {  type: Sequelize.STRING },
   TotalAmountOfAllClouds: {  type: Sequelize.INTEGER },
   TotalAmountOfLowClouds: {  type: Sequelize.INTEGER },
   TypeOfLowClouds1: {  type: Sequelize.INTEGER },
@@ -58,6 +58,7 @@ module.exports = (sequelize, Sequelize) => {
   Present_Weather: {  type: Sequelize.STRING },
   Present_WeatherCode: {  type: Sequelize.STRING },
   Past_Weather: {  type: Sequelize.STRING },
+  Pastt_WeatherCode: {  type: Sequelize.STRING },
   Visibility: {  type: Sequelize.INTEGER },
   Wind_Direction: {  type: Sequelize.STRING },
   Wind_Speed: {  type: Sequelize.STRING },
@@ -75,7 +76,9 @@ module.exports = (sequelize, Sequelize) => {
   sunduration: {  type: Sequelize.STRING },
   trend: {  type: Sequelize.STRING },
   windrun: {  type: Sequelize.STRING },
-  speciOrMetar: {  type: Sequelize.STRING },
+  Max_temp: { type: Sequelize.STRING},
+  Min_temp: { type: Sequelize.STRING},
+  speciormetar: {  type: Sequelize.STRING },
   UnitOfWindSpeed: {  type: Sequelize.STRING },
   IndOrOmissionOfPrecipitation: {  type: Sequelize.STRING },
   TypeOfStation_Present_Past_Weather: {  type: Sequelize.STRING },
@@ -92,9 +95,15 @@ module.exports = (sequelize, Sequelize) => {
   VapourPressure: {  type: Sequelize.STRING },
   T_H_Graph: {  type: Sequelize.STRING },
   DeviceType: {  type: Sequelize.STRING },
-  SubmittedBy: {  type: Sequelize.STRING },
+  SyncStatus: { type: Sequelize.ENUM('0', '1')},
+  O_SubmittedBy: {  type: Sequelize.STRING },
   Remarks: {  type: Sequelize.STRING },
-  Approved: {  type: Sequelize.INTEGER },
+  Approved: {  type: Sequelize.STRING },
+  ApprovedBy: {  type: Sequelize.INTEGER },
+  O_CreationDate: { type: Sequelize.DATE },
+  Endorsed: {  type: Sequelize.STRING },
+  EndorsedBy: {  type: Sequelize.STRING }
+  
 
 
 	});

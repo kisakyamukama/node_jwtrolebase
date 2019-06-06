@@ -198,7 +198,8 @@ exports.managementBoard = (req, res) => {
 exports.storeObservationslip = (req, res) => {
 	// Save form data  to Database
 	Observationslip.create({
-		Time: req.body.Time,
+		id: req.body.id,
+		Time: req.body.TIME,
 		Date: req.body.Date,
 		Station: req.body.Station,
 		stationName: req.body.stationName,
@@ -256,6 +257,7 @@ exports.storeObservationslip = (req, res) => {
 		Present_Weather: req.body.Present_Weather,
 		Present_WeatherCode: req.body.Present_WeatherCode,
 		Past_Weather: req.body.Past_Weather,
+		Past_WeatherCode: req.body.Past_WeatherCode,
 		Visibility: req.body.Visibility,
 		Wind_Direction: req.body.Wind_Direction,
 		Wind_Speed: req.body.Wind_Speed,
@@ -273,7 +275,9 @@ exports.storeObservationslip = (req, res) => {
 		sunduration: req.body.sunduration,
 		trend: req.body.trend,
 		windrun: req.body.windrun,
-		speciOrMetar: req.body.speciOrMetar,
+		Max_temp: req.body.Max_temp,
+		Min_temp:req.body.Min_temp,
+		speciormetar: req.body.speciormetar,
 		UnitOfWindSpeed: req.body.UnitOfWindSpeed,
 		IndOrOmissionOfPrecipitation: req.body.IndOrOmissionOfPrecipitation,
 		TypeOfStation_Present_Past_Weather: req.body.TypeOfStation_Present_Past_Weather,
@@ -290,17 +294,22 @@ exports.storeObservationslip = (req, res) => {
 		VapourPressure: req.body.VapourPressure,
 		T_H_Graph: req.body.T_H_Graph,
 		DeviceType: req.body.DeviceType,
-		SubmittedBy: req.body.SubmittedBy,
+		O_SubmittedBy: req.body.O_SubmittedBy,
 		Remarks: req.body.Remarks,
-		Approved : req.body.Approved
+		Approved : req.body.Approved,
+		ApprovedBy : req.body.ApprovedBy,
+		SyncStatus: req.body.SyncStatus.toString(),
+		Endorsed: req.body.Endorsed,
+		EndorsedBy: req.body.EndorsedBy
+
 
 	}).then(observationslip => {
 		Observationslip.findAll({
-			where: {
-				TIME: {
-					[Op.or]: req.body.TIME
-				}
-			}
+			// where: {
+			// 	TIME: {
+			// 		[Op.or]: req.body.TIME
+			// 	}
+			// }
 
 		}).then(
 
