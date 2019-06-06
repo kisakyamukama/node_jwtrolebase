@@ -101,7 +101,7 @@ exports.userContent = (req, res) => {
 // get a  user
 exports.getUser = (req, res) => {
 	const Id = req.params.id;
-	console.log(Id);
+	// console.log(Id);
 	User.findOne({
 		attributes: ['id','name', 'username', 'email', 'createdAt', 'updatedAt'],
 		where: {
@@ -120,7 +120,7 @@ exports.getUser = (req, res) => {
 
 exports.deleteUser = (req, res) => {
 	const id =  req.params.id;
-	console.log(id);
+	// console.log(id);
 	User.destroy({
 		where: {id: id}
 	}).then(() => {
@@ -130,7 +130,7 @@ exports.deleteUser = (req, res) => {
 
 exports.updateUser = (req, res) => {
 	let userInfo = req.body;
-	console.log(req.body);
+	// console.log(req.body);
 	let id = req.body.id;
 
 	User.update(userInfo,
@@ -306,7 +306,7 @@ exports.storeObservationslip = (req, res) => {
 
 			observationslips => {
 			console
-			res.send({ message: 'Registered successfully!' });
+			res.send({ message: 'Observationslip added successfully!' });
 		}).catch(err => {
 			res.status(500).send({ reason: err.message });
 		});

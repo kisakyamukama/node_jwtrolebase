@@ -28,6 +28,9 @@ module.exports = function (app) {
 	//test
 	app.get('/api/test/getObservationslips', [authJwt.verifyToken], controller.getObservationslips);
 
+	// update observationslip
+	// app.
+
 	//users
 	app.get('/api/users', controller.getAllUsers);
 	// get user
