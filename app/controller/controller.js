@@ -355,15 +355,63 @@ exports.getAnObservationslip = (req, res) => {
 }
 
 // count unsynced 
-exports.countUnsyncedObservationslips =  (req, res) => {
-	Observationslip.findAndCountAll({
-		where: {SyncStatus: 'true'}
-	}).then(count => {
-		console.log(count);
-		res.json(count);
+// exports.countUnsyncedObservationslips =  (req, res) => {
+// 	console.log('herere')
+// 	Observationslip.findAll({
+// 	 where:{
+// 		 id: [1]
+
+// 	 }
+	
+// 	}).then(count => {
+// 		console.log(count);
+// 		res.json(count);
+// 	}).catch(err => {
+// 		res.status(500).send({
+// 			'description':'Failed to count unsyced records',
+// 			'error': err
+// 		});
+// 	});
+
+// }
+
+// exports.countUnsyncedObservationslips = (req, res) => {
+	
+// 	Observationslip.findAll({
+// 		// where: { id: slipId}
+// 	}).then( oSlip => {
+// 		// console.log(oSlip);
+// 		res.json(oSlip)
+// 	}).catch(err => {
+// 		res.status(500).send({
+// 			'description': 'Can not fetch observationslip form',
+// 			'error': err
+// 		});
+// 	})
+// }
+
+exports.countUnsyncedObservationslips = (req, res) => {
+	Observationslip.findAll({
+		// limit: 10
+	}).then(observationslip => {
+		res.json(observationslip)
 	}).catch(err => {
 		res.status(500).send({
-			'description':'Failed to count unsyced records',
+			'description': 'Can not fetch obsevrationslips',
+			'error': err
+		});
+	});
+}
+
+exports.findCountUnsynced = (req, res) => {
+	console.log('here');
+	Observationslip.count({
+		where: { Station: 1 }
+	}).then(observationslip => {
+		res.json(observationslip)
+	}).catch(err => {
+		res.status(500).send({
+			'description': 'Can not fetch obsevrationslips',
 			'error': err
 		});
 	});

@@ -37,6 +37,7 @@ module.exports = function (app) {
 	app.put('/api/observationslip/updateObservationslip', controller.updateObservationslip);
 	// count unsynced records
 	app.get('/api/observationslip/count', controller.countUnsyncedObservationslips);
+	app.get('/api/observationslip/countUnsynced', controller.findCountUnsynced);
 	//users
 	app.get('/api/users', controller.getAllUsers);
 	// get user
